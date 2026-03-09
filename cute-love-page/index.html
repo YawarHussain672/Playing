@@ -28,17 +28,18 @@
 
         body, html {
             width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden; /* Only hide horizontal scroll */
+            height: 100%; /* Force exact height of viewport */
+            overflow: hidden !important; /* Strictly prevent all scrolling */
             background: linear-gradient(135deg, var(--blush-pink), var(--lavender), var(--soft-peach), var(--baby-blue));
             background-size: 300% 300%;
             animation: gradientAnim 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 0; /* Add padding for overflow scrolling on small screens */
             color: var(--text-dark);
-            position: relative;
+            position: fixed; /* Prevent bouncy scrolling on iOS */
+            top: 0; left: 0; right: 0; bottom: 0;
+            touch-action: pan-x pan-y; /* Prevent touch drag scrolling */
         }
 
         @keyframes gradientAnim {
@@ -229,50 +230,39 @@
         }
         
         /* Squeeze design natively on short screens so it never needs scrolling */
-        @media screen and (max-height: 750px) {
-            .modal-content {
-                padding: 1.5rem 1rem;
-            }
-            .modal-gif {
-                width: 100px; /* Make image smaller */
-                margin-bottom: 15px;
-            }
-            #messages-container {
-                gap: 8px; /* Less space between text */
-                margin-bottom: 12px;
-            }
-            .emotional-msg {
-                font-size: 1rem;
-            }
-            .final-msg {
-                font-size: 1.1rem;
-            }
-            .secret-input {
-                min-height: 50px; /* Shorter text area */
-                padding: 8px 12px;
-                margin-bottom: 8px;
-            }
-            .secret-form-container {
-                margin-top: 10px;
-            }
-            .secret-submit-btn {
-                padding: 8px 18px;
-                font-size: 0.9rem;
-            }
-            .close-modal {
-                top: 10px;
-                right: 10px;
-                width: 25px;
-                height: 25px;
-                font-size: 1rem;
-            }
-            .heading {
-                font-size: 1.5rem;
-            }
-            .cute-gif {
-                width: 120px;
-                margin-bottom: 15px;
-            }
+        @media screen and (max-height: 800px) {
+            .modal-content { padding: 1.5rem 1rem; }
+            .main-card { padding: 1.5rem 1rem; }
+            .modal-gif { width: 100px; margin-bottom: 15px; }
+            .cute-gif { width: 120px; margin-bottom: 10px; }
+            .heading { font-size: 1.4rem; margin-bottom: 8px; }
+            .cycler-text { font-size: 1rem; min-height: 44px; margin-bottom: 10px; }
+            #messages-container { gap: 8px; margin-bottom: 10px; }
+            .emotional-msg { font-size: 1rem; }
+            .final-msg { font-size: 1.1rem; margin-bottom: 0; }
+            .secret-input { min-height: 50px; padding: 8px 12px; margin-bottom: 8px; font-size: 0.9rem; }
+            .secret-form-container { margin-top: 5px; }
+            .secret-submit-btn { padding: 8px 18px; font-size: 0.9rem; }
+            .msg-space { height: 25px; margin-bottom: 15px; font-size: 0.9rem; }
+            .btn { padding: 10px 24px; font-size: 1rem; }
+        }
+
+        /* Extreme squeeze for very short screens (like keyboard open on mobile) */
+        @media screen and (max-height: 600px) {
+            .modal-content { padding: 1rem; }
+            .main-card { padding: 1rem; }
+            .modal-gif { width: 70px; margin-bottom: 5px; }
+            .cute-gif { width: 90px; margin-bottom: 5px; }
+            .heading { font-size: 1.1rem; margin-bottom: 5px; }
+            .cycler-text { font-size: 0.85rem; min-height: 38px; margin-bottom: 5px; }
+            #messages-container { gap: 4px; margin-bottom: 8px; }
+            .emotional-msg { font-size: 0.9rem; margin-bottom: 0; }
+            .final-msg { font-size: 0.95rem; margin-bottom: 0; }
+            .secret-input { min-height: 40px; padding: 6px 10px; margin-bottom: 5px; font-size: 0.85rem; }
+            .secret-submit-btn { padding: 6px 14px; font-size: 0.85rem; }
+            .msg-space { height: 20px; margin-bottom: 10px; font-size: 0.85rem; }
+            .btn { padding: 8px 20px; font-size: 0.9rem; }
+            .hidden-msg.show-toast { margin-top: 10px; font-size: 0.85rem; }
         }
 
         .close-modal {
