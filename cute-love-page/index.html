@@ -561,6 +561,9 @@
                 // Adjust margin of the remaining button so it stays centered
                 document.getElementById('yes-btn').style.margin = '0 auto';
                 document.getElementById('btn-group').style.display = 'block';
+                
+                // CRITICAL FIX: move button to body so it escapes the backdrop-filter bounding box
+                document.body.appendChild(noBtn);
             }
             
             noAttempts++;
