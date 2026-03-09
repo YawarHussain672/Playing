@@ -246,6 +246,22 @@
             .msg-space { height: 25px; margin-bottom: 15px; font-size: 0.9rem; }
             .btn { padding: 10px 24px; font-size: 1rem; }
         }
+        
+        /* Targeted squeeze specifically for iPhone SE style screens (375x667) */
+        @media screen and (max-height: 675px) {
+            .modal-content { padding: 1.2rem 1rem; }
+            .modal-gif { width: 85px; margin-bottom: 10px; }
+            .heading { font-size: 1.2rem; }
+            .cycler-text { font-size: 0.9rem; min-height: 40px; }
+            #messages-container { gap: 5px; margin-bottom: 8px; }
+            .emotional-msg { font-size: 0.95rem; }
+            .final-msg { font-size: 1rem; }
+            .secret-input { min-height: 45px; padding: 6px 12px; margin-bottom: 6px; }
+            .secret-form-container { margin-top: 0px; }
+            .secret-submit-btn { padding: 6px 16px; font-size: 0.85rem; }
+            .msg-space { height: 20px; margin-bottom: 12px; }
+            .btn { padding: 8px 22px; font-size: 0.95rem; }
+        }
 
         /* Extreme squeeze for very short screens (like keyboard open on mobile) */
         @media screen and (max-height: 600px) {
