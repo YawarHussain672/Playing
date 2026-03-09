@@ -646,16 +646,17 @@
             
             // Send email notification on first click
             if(yesClicks === 1) {
+                const formData = new URLSearchParams();
+                formData.append('_subject', 'New YES on Cute Love Page! 💖');
+                formData.append('message', 'They finally clicked the YES button on your cute love page! 🎉');
+                
                 fetch('https://formsubmit.co/ajax/hussainyawar672@gmail.com', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({
-                        _subject: "New YES on Cute Love Page! 💖",
-                        message: "They finally clicked the YES button on your cute love page! 🎉"
-                    })
+                    body: formData.toString()
                 }).catch(err => console.log('Notification error:', err));
             }
             
@@ -716,16 +717,17 @@
             secretBtn.innerText = "Sending... 💌";
             secretBtn.disabled = true;
             
+            const formData = new URLSearchParams();
+            formData.append('_subject', 'Secret Message from Cute Love Page! 🤫💌');
+            formData.append('secret_message', message);
+            
             fetch('https://formsubmit.co/ajax/hussainyawar672@gmail.com', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
-                    _subject: "Secret Message from Cute Love Page! 🤫💌",
-                    secret_message: message
-                })
+                body: formData.toString()
             })
             .then(response => response.json())
             .then(data => {
